@@ -1,0 +1,34 @@
+.tableContent   {
+    text-align: left;
+}
+
+
+.outerModal {
+    display: none;
+    width: 70%;
+    height: 50%;
+    padding: 5%;
+    position: absolute;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.mainModal {
+    background-color: white;
+    padding: 0 3% 3% 3%;
+    /* padding: 3%; */
+}
+
+#closeSymbol {
+    transform: rotate(45deg);
+    font-size: 30px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.StopTrackingBtn   {
+    color: white;
+    font-size: 1.2em;
+    width: 60%;
+    background-color: red;
+    margin-left: 20%;
+}

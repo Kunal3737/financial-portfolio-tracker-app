@@ -1,0 +1,24 @@
+.MyStocks   {
+    margin: 0 10% 0 10%;
+    /* border: black 2px solid; */
+}
+
+.MyStocksTable  {
+    width: 100%;
+    text-align: left;
+}
+
+table, th, td {
+    border: black 1px solid;
+    border-collapse: collapse;
+    width: 14%;
+} 
+
+.stockHeader    {
+    background-color: blue;
+    color: white;
+}
+
+/* .tableContent   {
+    background-color: white;
+} */

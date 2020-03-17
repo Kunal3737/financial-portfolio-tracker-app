@@ -1,0 +1,18 @@
+ul , .StockButton    {
+    column-count: 2;
+    list-style-type: none;
+}
+
+.StockButton    {
+    width: 15%;
+    margin: 0.5%;
+    border-radius: 5px;
+}
+
+#addBtn {
+    border-radius: 5px;
+}
+
+.MyStocksTable  {
+    width: 100%;
+}
