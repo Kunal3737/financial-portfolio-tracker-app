@@ -4,7 +4,6 @@ import './AddStocks.css'
 import axios from 'axios'
 import MyStocks from './MyStocks'
 
-
 class AddStocks extends React.Component {
         constructor(props){
             super(props);
@@ -34,38 +33,33 @@ class AddStocks extends React.Component {
         axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=HYM09DQLAGWQMN62`)
             .then(res => {
                 const resp = res.data;
-/*                 console.log(resp);
-                console.log(resp['Meta Data']);
- */                var today = new Date();
+                var today = new Date();
                 var date = today.getDate();
                 var month = today.getMonth() + 1;
                 if (date < 10)  {
                     date = "0" + (date);
                 }
-/*                 console.log(date);
- */
+
                 if (month < 10)  {
                     month = "0" + (month);
                 }
-/*                 console.log(month);
- */
 
-                var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 3);
+                var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date);
                 console.log(wholeDate);
                 var day = today.getDay();
-/*                 console.log(day);
- */             
 
                 // For Saturday
                 if (day === 6) {
                     var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 1);
+                    var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 }
 
                 // For Sunday
                 if (day === 0) {
                     var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 2);
+                    var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 }
-
+                
                 var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 console.log(current_Price);
  
@@ -75,30 +69,7 @@ class AddStocks extends React.Component {
                     todaysDate: wholeDate,
                     currentPrice : current_Price
                 })
-
-                
-                if (day === 6) {
-                    day = day - 1;
-                    date -= 1;
-                    console.log(wholeDate);
-                    console.log(resp['Time Series (Daily)'][wholeDate]);
-                    console.log(day);
-                }
-                else if (day === 0) {
-                    day = day + 5;
-                    date -= 2;
-                    console.log(date);
-                    console.log(resp['Time Series (Daily)'][wholeDate]);
-                    console.log(resp['Time Series (Daily)'][wholeDate]['1. open']);
-                    console.log(day);
-                }
-                else {
-                    console.log(date);
-                    console.log(resp['Time Series (Daily)']);
-                    console.log(resp['Time Series (Daily)'][wholeDate]);
-                    console.log(resp['Time Series (Daily)'][wholeDate]['1. open']);
-                    console.log(day);
-                }
+             
             })
             
             document.querySelector(".outerModal").style.display="block";
@@ -117,8 +88,6 @@ class AddStocks extends React.Component {
         var buyPrice = document.querySelector("#buyPrice").value
         console.log(buyPrice);
         
-        // (current price – buy price) * no. of shares. 
-
         var profitloss = (this.state.currentPrice - buyPrice) * noShares;
         console.log(profitloss);
 
@@ -129,11 +98,6 @@ class AddStocks extends React.Component {
                 profitLoss : profitloss,
                 errorMessage: ''
             });
-            console.log(this.state.no_Of_Shares);
-            console.log(this.state.buyingPrice);
-            console.log(this.state.profitLoss);    
-
-
 
             items.push({
                 itemsStockSymbol: this.state.currentStockSymbol,
@@ -152,10 +116,10 @@ class AddStocks extends React.Component {
             noShares = document.querySelector("#noShares").value = '';
             buyPrice = document.querySelector("#buyPrice").value = '';
         }
+
         else {
             this.setState({errorMessage : "Please fill all the inputs"})
-        }
-       
+        } 
     }
 
     render() {

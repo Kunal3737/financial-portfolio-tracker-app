@@ -1,6 +1,5 @@
 .MyStocks   {
     margin: 0 10% 0 10%;
-    /* border: black 2px solid; */
 }
 
 .MyStocksTable  {
@@ -18,7 +17,3 @@ table, th, td {
     background-color: blue;
     color: white;
 }
-
-/* .tableContent   {
-    background-color: white;
-} */

@@ -3,7 +3,6 @@ import './MyStocks.css';
 import AllStocks from './AllStocks'
 import AddStocks from './AddStocks'
 
-
 class MyStocks extends Component {
     render() {
         return (
@@ -21,7 +20,6 @@ class MyStocks extends Component {
                             <th>Stop Tracking</th>
                         </tr>
                     </thead>
-                    {/* <AllStocks/> */}
                 </table>
                 <AddStocks/>
             </div>

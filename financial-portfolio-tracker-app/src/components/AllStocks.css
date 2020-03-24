@@ -2,7 +2,6 @@
     text-align: left;
 }
 
-
 .outerModal {
     display: none;
     width: 70%;
@@ -15,7 +14,6 @@
 .mainModal {
     background-color: white;
     padding: 0 3% 3% 3%;
-    /* padding: 3%; */
 }
 
 #closeSymbol {
