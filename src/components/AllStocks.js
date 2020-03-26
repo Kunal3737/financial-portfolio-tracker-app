@@ -9,9 +9,7 @@ class AllStocks extends Component {
         super(props);
     }
     
-    stopTrackingButtonClicked = (event) => {
-        let index = 0;
-        index = this.props.items.findIndex( x => x.itemsStockSymbol === event.target.value);
+    stopTrackingButtonClicked = (event,index) => {
         this.setState({
             isClicked : true
         })
@@ -23,7 +21,7 @@ class AllStocks extends Component {
             <tbody>
                 {this.props.items.map(item => {
                     return (
-                        <tr key = "item.itemsStockSymbol">
+                        <tr key = {item.itemsStockSymbol}>
                             <td>{item.itemsStockSymbol}</td>
                             <td>{item.itemsStockName}</td>
                             <td>{item.itemsNoOfShares}</td>
@@ -31,7 +29,7 @@ class AllStocks extends Component {
                             <td>{item.itemsCurrentPrice}</td>
                             <td>{item.itemsProfitloss}</td>
 
-                            <td><button className="StopTrackingBtn" onClick= {(event) => {this.stopTrackingButtonClicked(event)}}>x</button></td>
+                            <td><button className="StopTrackingBtn" onClick= {(event, index) => {this.stopTrackingButtonClicked(event, index)}}>x</button></td>
                         </tr>
                     );
                 })}
