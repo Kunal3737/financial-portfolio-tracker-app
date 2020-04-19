@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/financial-portfolio-tracker-app/static/css/main.a00bb15c.chunk.css",
+    "main.js": "/financial-portfolio-tracker-app/static/js/main.8f96445e.chunk.js",
+    "main.js.map": "/financial-portfolio-tracker-app/static/js/main.8f96445e.chunk.js.map",
+    "runtime-main.js": "/financial-portfolio-tracker-app/static/js/runtime-main.90ab8dd7.js",
+    "runtime-main.js.map": "/financial-portfolio-tracker-app/static/js/runtime-main.90ab8dd7.js.map",
+    "static/js/2.edb557bc.chunk.js": "/financial-portfolio-tracker-app/static/js/2.edb557bc.chunk.js",
+    "static/js/2.edb557bc.chunk.js.map": "/financial-portfolio-tracker-app/static/js/2.edb557bc.chunk.js.map",
+    "index.html": "/financial-portfolio-tracker-app/index.html",
+    "precache-manifest.19080ee4624187962c96dd963fdbb63c.js": "/financial-portfolio-tracker-app/precache-manifest.19080ee4624187962c96dd963fdbb63c.js",
+    "service-worker.js": "/financial-portfolio-tracker-app/service-worker.js",
+    "static/css/main.a00bb15c.chunk.css.map": "/financial-portfolio-tracker-app/static/css/main.a00bb15c.chunk.css.map",
+    "static/js/2.edb557bc.chunk.js.LICENSE.txt": "/financial-portfolio-tracker-app/static/js/2.edb557bc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90ab8dd7.js",
+    "static/js/2.edb557bc.chunk.js",
+    "static/css/main.a00bb15c.chunk.css",
+    "static/js/main.8f96445e.chunk.js"
+  ]
+}
