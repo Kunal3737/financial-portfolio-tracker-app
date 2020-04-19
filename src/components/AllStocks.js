@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
-import AddStocks from './AddStocks'
-import axios from 'axios'
 import './AllStocks.css'
 
-class AllStocks extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-    
+class AllStocks extends Component {    
     stopTrackingButtonClicked = (event,index) => {
         this.setState({
             isClicked : true

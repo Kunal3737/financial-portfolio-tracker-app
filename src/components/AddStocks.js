@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AllStocks from './AllStocks'
 import './AddStocks.css'
-import axios from 'axios'
-import MyStocks from './MyStocks'
 
+const axios = require('axios').default;
 class AddStocks extends React.Component {
         constructor(props){
             super(props);
@@ -22,9 +21,9 @@ class AddStocks extends React.Component {
         }
 
     componentDidMount() {
-        axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/.json`)
+        axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/mystocks.json`)
             .then(res => {
-                const resp = res.data; 
+                const resp = res.data;
                 this.setState({resp})
             });
     } 
@@ -50,17 +49,17 @@ class AddStocks extends React.Component {
 
                 // For Saturday
                 if (day === 6) {
-                    var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 1);
+                    wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 1);
                     var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 }
 
                 // For Sunday
                 if (day === 0) {
-                    var wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 2);
-                    var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
+                    wholeDate = today.getFullYear() + '-' + (month) + '-' + (date - 2);
+                    current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 }
                 
-                var current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
+                current_Price = resp['Time Series (Daily)'][wholeDate]['1. open'];
                 console.log(current_Price);
  
                  this.setState({
@@ -69,7 +68,7 @@ class AddStocks extends React.Component {
                     todaysDate: wholeDate,
                     currentPrice : current_Price
                 })
-             
+
             })
             
             document.querySelector(".outerModal").style.display="block";

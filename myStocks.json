@@ -1,46 +1,48 @@
-[
-    {
-        "symbol" : "MSFT",
-        "name" : "Microsoft Corporation"
-    },
-    {
-        "symbol" : "GS",
-        "name" : "Goldman Sachs Group Inc."
-    },
-    {
-        "symbol" : "DIS",
-        "name" : "Walt Disney Co"
-    },
-    {
-        "symbol" : "BA",
-        "name" : "Boeing Co"
-    },
-    {
-        "symbol" : "HD",
-        "name" : "Home Depot Inc"
-    },
-    {
-        "symbol" : "NKE",
-        "name" : "Nike Inc"
-    },
-    {
-        "symbol" : "MCD",
-        "name" : "Mcdonald's Corp"
-    },
-    {
-        "symbol" : "INTC",
-        "name" : "Intel Corporation"
-    },
-    {
-        "symbol" : "JPM",
-        "name" : "JPMorgan Chase & Co."
-    },
-    {
-        "symbol" : "AXP",
-        "name" : "American Express Company"
-    },
-    {
-        "symbol" : "IBM",
-        "name" : "IBM Common Stock"
-    }
-]
+{
+    "mystocks": [
+        {
+            "symbol" : "MSFT",
+            "name" : "Microsoft Corporation"
+        },
+        {
+            "symbol" : "GS",
+            "name" : "Goldman Sachs Group Inc."
+        },
+        {
+            "symbol" : "DIS",
+            "name" : "Walt Disney Co"
+        },
+        {
+            "symbol" : "BA",
+            "name" : "Boeing Co"
+        },
+        {
+            "symbol" : "HD",
+            "name" : "Home Depot Inc"
+        },
+        {
+            "symbol" : "NKE",
+            "name" : "Nike Inc"
+        },
+        {
+            "symbol" : "MCD",
+            "name" : "Mcdonald's Corp"
+        },
+        {
+            "symbol" : "INTC",
+            "name" : "Intel Corporation"
+        },
+        {
+            "symbol" : "JPM",
+            "name" : "JPMorgan Chase & Co."
+        },
+        {
+            "symbol" : "AXP",
+            "name" : "American Express Company"
+        },
+        {
+            "symbol" : "IBM",
+            "name" : "IBM Common Stock"
+        }
+    ]
+}    

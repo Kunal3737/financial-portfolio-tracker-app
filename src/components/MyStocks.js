@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './MyStocks.css';
-import AllStocks from './AllStocks'
 import AddStocks from './AddStocks'
 
 class MyStocks extends Component {
