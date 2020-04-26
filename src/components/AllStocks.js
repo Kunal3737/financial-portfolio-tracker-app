@@ -1,28 +1,97 @@
 import React, { Component } from 'react'
 import './AllStocks.css'
+const axios = require('axios').default;
 
-class AllStocks extends Component {    
-    stopTrackingButtonClicked = (event,index) => {
-        this.setState({
-            isClicked : true
+class AllStocks extends Component {  
+    constructor(props) {
+        super(props)
+        this.state = {
+            resp: [],
+            isStopTracking: false
+        }
+    } 
+
+    componentDidMount() {
+        axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/stocksInTable.json`)
+            .then(response => {
+                const fetchedResult = [];
+                for (let key in response.data){
+                    fetchedResult.push({
+                        ...response.data[key],
+                        id:key
+                    })
+                }
+                this.setState({resp : fetchedResult})
+                console.log("Response: ",this.state.resp);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    } 
+
+    componentDidUpdate() {
+        if (this.props.isButtonClicked || this.state.isStopTracking) {
+            axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/stocksInTable.json`)
+            .then(response => {
+                const fetchedResult = [];
+                for (let key in response.data){
+                    fetchedResult.push({
+                        ...response.data[key],
+                        id:key
+                    })
+                }
+                this.setState({resp : fetchedResult})
+                console.log("Response: ",this.state.resp.length);
+                this.setState({isStopTracking: false})
+            })
+            .catch(error => {
+                console.log(error);
         })
-        this.props.items.splice(index,1);  
+        }
     }
+    
+    stopTrackingButtonClicked = (id, symbol, name) => {
+        console.log("ID:", id);
+        axios.delete(`https://financial-portfolio-trac-40940.firebaseio.com/stocksInTable/${id}.json`)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
+        axios.post(`https://financial-portfolio-trac-40940.firebaseio.com/mystocks.json`, {
+                "symbol": symbol,
+                "name": name
+            }
+        )
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        
+        this.setState({isStopTracking: true})
+
+        this.props.fromChild(true);
+    }
+    
     render() {
+        console.log(this.props.items);
         return (
             <tbody>
-                {this.props.items.map(item => {
+                {this.state.resp.map(item => {
                     return (
-                        <tr key = {item.itemsStockSymbol}>
-                            <td>{item.itemsStockSymbol}</td>
-                            <td>{item.itemsStockName}</td>
-                            <td>{item.itemsNoOfShares}</td>
-                            <td>{item.itemsBuyPrice}</td>
-                            <td>{item.itemsCurrentPrice}</td>
-                            <td>{item.itemsProfitloss}</td>
+                        <tr key = {item.id}>
+                            <td>{item.symbol}</td>
+                            <td>{item.name}</td>
+                            <td>{item.noOfShares}</td>
+                            <td>{item.buyPrice}</td>
+                            <td>{item.currentPrice}</td>
+                            <td>{item.profitLoss}</td>
 
-                            <td><button className="StopTrackingBtn" onClick= {(event, index) => {this.stopTrackingButtonClicked(event, index)}}>x</button></td>
+                            <td><button className="StopTrackingBtn" onClick= {(id, symbol, name) => {this.stopTrackingButtonClicked(item.id, item.symbol, item.name)}}>x</button></td>
                         </tr>
                     );
                 })}

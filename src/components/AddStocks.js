@@ -16,19 +16,75 @@ class AddStocks extends React.Component {
                 errorMessage : '',
                 currentPrice : '',
                 profitLoss : '',
-                items: [],
-            }    
+                isButtonClicked: false,
+                IdOfStock : '',
+                countChild: true,
+                responseFromStocksInTable : []
+            }
+
         }
 
     componentDidMount() {
         axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/mystocks.json`)
-            .then(res => {
-                const resp = res.data;
-                this.setState({resp})
-            });
+            .then(response => {
+                const fetchedResult = [];
+                for (let key in response.data){
+                    fetchedResult.push({
+                        ...response.data[key],
+                        id:key
+                    })
+                }
+                this.setState({resp : fetchedResult})
+                console.log(this.state.resp);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     } 
 
-    addStockBtn = (symbol, name) => {
+    componentDidUpdate() {
+        if (this.state.isButtonClicked || this.state.countChild) {
+            this.setState({countChild: false})
+            axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/mystocks.json`)
+            .then(response => {
+                const fetchedResult = [];
+                for (let key in response.data){
+                    fetchedResult.push({
+                        ...response.data[key],
+                        id:key
+                    })
+                }
+                this.setState({resp : fetchedResult})
+                console.log(this.state.resp);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            this.setState({isButtonClicked : false})
+        
+
+            axios.get(`https://financial-portfolio-trac-40940.firebaseio.com/stocksInTable.json`)
+                .then(response => {
+                    const fetchedResult = [];
+                    for (let key in response.data){
+                        fetchedResult.push({
+                            ...response.data[key],
+                            id:key
+                        })
+                    }
+                    this.setState({responseFromStocksInTable : fetchedResult})
+                    console.log("Response: ",this.state.responseFromStocksInTable.length);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    }
+
+
+    addStockBtn = (symbol, name, id) => {
+        this.setState({IdOfStock : id})
+
         axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=HYM09DQLAGWQMN62`)
             .then(res => {
                 const resp = res.data;
@@ -79,7 +135,6 @@ class AddStocks extends React.Component {
     }
 
     async addBtnClicked(){
-        let items = [...this.state.items];
 
         var noShares = document.querySelector("#noShares").value
         console.log(noShares);
@@ -98,22 +153,40 @@ class AddStocks extends React.Component {
                 errorMessage: ''
             });
 
-            items.push({
-                itemsStockSymbol: this.state.currentStockSymbol,
-                itemsStockName: this.state.currentStockName,
-                itemsNoOfShares: this.state.no_Of_Shares,
-                itemsBuyPrice: this.state.buyingPrice,
-                itemsCurrentPrice: this.state.currentPrice,
-                itemsProfitloss: this.state.profitLoss
-              });
-
-            this.setState({
-                items
-            });
-
             document.querySelector(".outerModal").style.display="none"; 
             noShares = document.querySelector("#noShares").value = '';
             buyPrice = document.querySelector("#buyPrice").value = '';
+
+            axios.delete(`https://financial-portfolio-trac-40940.firebaseio.com/mystocks/${this.state.IdOfStock}.json`, {
+                params: {
+                    "name": this.state.currentStockName,
+                    "symbol": this.state.currentStockSymbol
+                }
+            })
+            .then(response => {
+                console.log(response.data);
+                this.setState({isButtonClicked : true})
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+            const data = {
+                "symbol": this.state.currentStockSymbol,
+                "name": this.state.currentStockName,
+                "noOfShares": this.state.no_Of_Shares,
+                "buyPrice": this.state.buyingPrice,
+                "currentPrice": this.state.currentPrice,
+                "profitLoss": this.state.profitLoss
+            }
+    
+            axios.post(`https://financial-portfolio-trac-40940.firebaseio.com/stocksInTable.json`,data)
+                .then(response => {
+                    console.log("Response: ",response);
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
 
         else {
@@ -121,14 +194,23 @@ class AddStocks extends React.Component {
         } 
     }
 
+    fromChild = async (value) => {
+        await this.setState({countChild: value})
+        console.log("Count Child:",this.state.countChild);
+    }
+
     render() {
         return (
             <div className="AddStocksTitle">
+                {this.state.responseFromStocksInTable.length === 0 ?
+                <h1 className="noStock" >No stocks have been selected</h1> : 
                 <table className="MyStocksTable">
-                <AllStocks
-                    items={ this.state.items} 
-                 />
+                    {<AllStocks
+                        isButtonClicked = {this.state.isButtonClicked}
+                        fromChild = {this.fromChild}
+                    />}
                 </table>
+                }
                 <div className="outerModal">
                     <div className="mainModal">
                         <strong id="closeSymbol" style = {{float: "right"}}>+</strong><br></br>
@@ -145,13 +227,14 @@ class AddStocks extends React.Component {
                         <div style = {{textAlign: "center"}}><button id="addBtn" type="submit" className="AddButton" style = {{width: "10%"}} onClick={this.addBtnClicked.bind(this)}>Add</button></div>
                     </div>
                 </div>
+                <hr/>
                 <div>
                     <h3>Add Stocks to my Stocks</h3>
-                </div>
                     <ul>
-                        {this.state.resp.map((names) => <li key={names.symbol}><button style={{"width":"100px"}} className="StockButton"
-                        onClick={(symbol, name) => this.addStockBtn(names.symbol, names.name)}>{names.symbol}</button> {names.name}</li>)}
-                   </ul>  
+                        {this.state.resp.map((names) => <li key={names.id}><button style={{"width":"100px"}} className="StockButton"
+                        onClick={(symbol, name, id) => this.addStockBtn(names.symbol, names.name, names.id)}>{names.symbol}</button> {names.name}</li>)}
+                   </ul>
+                </div>
             </div>
         )
     }

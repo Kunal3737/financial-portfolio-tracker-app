@@ -16,3 +16,8 @@ ul , .StockButton    {
 .MyStocksTable  {
     width: 100%;
 }
+
+.noStock {
+    text-align: center;
+    color: red;
+}
