@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "21659ef4566f9e29d011ecd4e706df26",
+    "revision": "ff0023a1c192f401ef9c40f0cf67681f",
     "url": "/financial-portfolio-tracker-app/index.html"
   },
   {
-    "revision": "408749fe89be9c262e6b",
+    "revision": "66535da9200c7ce45e08",
     "url": "/financial-portfolio-tracker-app/static/css/main.7aaa4df2.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/financial-portfolio-tracker-app/static/js/2.897426a8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "408749fe89be9c262e6b",
-    "url": "/financial-portfolio-tracker-app/static/js/main.a0efa97e.chunk.js"
+    "revision": "66535da9200c7ce45e08",
+    "url": "/financial-portfolio-tracker-app/static/js/main.28fb1e53.chunk.js"
   },
   {
     "revision": "e6fff45214d5c6269cf8",
