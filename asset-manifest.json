@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/financial-portfolio-tracker-app/static/css/main.7aaa4df2.chunk.css",
-    "main.js": "/financial-portfolio-tracker-app/static/js/main.7d05d9ff.chunk.js",
-    "main.js.map": "/financial-portfolio-tracker-app/static/js/main.7d05d9ff.chunk.js.map",
+    "main.css": "/financial-portfolio-tracker-app/static/css/main.aaaaf345.chunk.css",
+    "main.js": "/financial-portfolio-tracker-app/static/js/main.7e189c8b.chunk.js",
+    "main.js.map": "/financial-portfolio-tracker-app/static/js/main.7e189c8b.chunk.js.map",
     "runtime-main.js": "/financial-portfolio-tracker-app/static/js/runtime-main.90ab8dd7.js",
     "runtime-main.js.map": "/financial-portfolio-tracker-app/static/js/runtime-main.90ab8dd7.js.map",
     "static/js/2.90ea7920.chunk.js": "/financial-portfolio-tracker-app/static/js/2.90ea7920.chunk.js",
     "static/js/2.90ea7920.chunk.js.map": "/financial-portfolio-tracker-app/static/js/2.90ea7920.chunk.js.map",
     "index.html": "/financial-portfolio-tracker-app/index.html",
-    "precache-manifest.6ff84ba57d392f5b9bb7e776d1817c33.js": "/financial-portfolio-tracker-app/precache-manifest.6ff84ba57d392f5b9bb7e776d1817c33.js",
+    "precache-manifest.4107f4d105fdce12d27e4b5933b68b9b.js": "/financial-portfolio-tracker-app/precache-manifest.4107f4d105fdce12d27e4b5933b68b9b.js",
     "service-worker.js": "/financial-portfolio-tracker-app/service-worker.js",
-    "static/css/main.7aaa4df2.chunk.css.map": "/financial-portfolio-tracker-app/static/css/main.7aaa4df2.chunk.css.map",
+    "static/css/main.aaaaf345.chunk.css.map": "/financial-portfolio-tracker-app/static/css/main.aaaaf345.chunk.css.map",
     "static/js/2.90ea7920.chunk.js.LICENSE.txt": "/financial-portfolio-tracker-app/static/js/2.90ea7920.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.90ab8dd7.js",
     "static/js/2.90ea7920.chunk.js",
-    "static/css/main.7aaa4df2.chunk.css",
-    "static/js/main.7d05d9ff.chunk.js"
+    "static/css/main.aaaaf345.chunk.css",
+    "static/js/main.7e189c8b.chunk.js"
   ]
 }
