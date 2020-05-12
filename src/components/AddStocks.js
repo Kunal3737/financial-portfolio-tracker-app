@@ -1,10 +1,12 @@
 import React from "react";
 import AllStocks from "./AllStocks";
 import "./AddStocks.css";
+import Modal from "react-modal";
 
 const axios = require("axios").default;
 class AddStocks extends React.Component {
   constructor(props) {
+    Modal.setAppElement("#root");
     super(props);
     this.state = {
       resp: [],
@@ -20,6 +22,7 @@ class AddStocks extends React.Component {
       IdOfStock: "",
       countChild: true,
       responseFromStocksInTable: [],
+      isModal: false,
     };
   }
 
@@ -132,14 +135,15 @@ class AddStocks extends React.Component {
           currentStockSymbol: symbol,
           todaysDate: wholeDate,
           currentPrice: current_Price["1. open"],
+          isModal: true,
         });
       });
 
-    document.querySelector(".outerModal").style.display = "block";
+    // document.querySelector(".outerModal").style.display = "block";
 
-    document.querySelector("#closeSymbol").addEventListener("click", () => {
-      document.querySelector(".outerModal").style.display = "none";
-    });
+    // document.querySelector("#closeSymbol").addEventListener("click", () => {
+    //   document.querySelector(".outerModal").style.display = "none";
+    // });
   };
 
   async addBtnClicked() {
@@ -161,7 +165,7 @@ class AddStocks extends React.Component {
         errorMessage: "",
       });
 
-      document.querySelector(".outerModal").style.display = "none";
+      // document.querySelector(".outerModal").style.display = "none";
       noShares = document.querySelector("#noShares").value = "";
       buyPrice = document.querySelector("#buyPrice").value = "";
 
@@ -206,11 +210,13 @@ class AddStocks extends React.Component {
     } else {
       this.setState({ errorMessage: "Please fill all the inputs" });
     }
+    this.setState({
+      isModal: false,
+    });
   }
 
-  fromChild = async (value) => {
-    await this.setState({ countChild: value });
-    console.log("Count Child:", this.state.countChild);
+  fromChild = () => {
+    this.setState({ isButtonClicked: true });
   };
 
   render() {
@@ -228,9 +234,18 @@ class AddStocks extends React.Component {
             }
           </table>
         )}
-        <div className="outerModal">
+        <Modal isOpen={this.state.isModal}>
+          {/* <div className="outerModal"> */}
           <div className="mainModal">
-            <strong id="closeSymbol" style={{ float: "right" }}>
+            <strong
+              id="closeSymbol"
+              style={{ float: "right" }}
+              onClick={() => {
+                this.setState({
+                  isModal: false,
+                });
+              }}
+            >
               +
             </strong>
             <br></br>
@@ -296,7 +311,8 @@ class AddStocks extends React.Component {
               </button>
             </div>
           </div>
-        </div>
+          {/* </div> */}
+        </Modal>
         <hr />
         <div>
           <h3>Add Stocks to my Stocks</h3>
