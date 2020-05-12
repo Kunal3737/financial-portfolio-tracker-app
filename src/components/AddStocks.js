@@ -4,6 +4,7 @@ import "./AddStocks.css";
 import Modal from "react-modal";
 
 const axios = require("axios").default;
+// const Modal = require("Modal").default;
 class AddStocks extends React.Component {
   constructor(props) {
     Modal.setAppElement("#root");
@@ -220,6 +221,17 @@ class AddStocks extends React.Component {
   };
 
   render() {
+    const customStyles = {
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        width: "800px",
+      },
+    };
     return (
       <div className="AddStocksTitle">
         {this.state.responseFromStocksInTable.length === 0 ? (
@@ -234,7 +246,7 @@ class AddStocks extends React.Component {
             }
           </table>
         )}
-        <Modal isOpen={this.state.isModal}>
+        <Modal isOpen={this.state.isModal} style={customStyles}>
           {/* <div className="outerModal"> */}
           <div className="mainModal">
             <strong

@@ -11,6 +11,8 @@ ul , .StockButton    {
 
 #addBtn {
     border-radius: 5px;
+    margin-left: 25%;
+    
 }
 
 .MyStocksTable  {
